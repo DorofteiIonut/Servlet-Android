@@ -45,6 +45,7 @@ public class Server extends HttpServlet {
 		System.out.println(userName + "   "+infoRequest);
 		if(userName==null) {
 			System.out.println("Null");
+			response.setStatus(403);
 		}else {
 			if(infoRequest!=null) {
 				try {
@@ -72,7 +73,7 @@ public class Server extends HttpServlet {
 							 System.out.println(e.getMessage());
 							}
 					}
-					
+					response.setStatus(200);
 				    response.getWriter().write(jsonResp.JsonConvert(jsonResp));
 				}catch (Exception e) {
 					System.out.println(e.getMessage());
