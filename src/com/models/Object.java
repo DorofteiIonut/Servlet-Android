@@ -33,6 +33,12 @@ public class Object {
 		this.locationName = locationName;
 	}
 
+	public String JsonConvert(Object obj) {
+	String resp="{"+"\"username\":\""+obj.getUserName()+"\"}";
+		System.out.println(resp);
+		return resp;
+	}
+
 
 	@Override
 	public String toString() {

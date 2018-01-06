@@ -4,11 +4,19 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+import com.models.JSONConvertor;
+import com.models.Object;
+
+import jdk.nashorn.internal.parser.JSONParser;
 
 /**
  * Servlet implementation class Server
@@ -30,18 +38,15 @@ public class Server extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		Object jsonResp=new Object("Ionut","Sugeo");
 		System.out.println(request.getRequestURL());
-		response.getWriter().append("<p>Hello in SerlvetAndroid App</p>");
 		String userName=request.getParameter("userName");
 		String infoRequest=request.getParameter("info");
 		System.out.println(userName + "   "+infoRequest);
 		if(userName==null) {
-			response.getWriter().append("<p>No user name received</p>");
+			System.out.println("Null");
 		}else {
-			response.getWriter().append("Welcome:"+userName);	
 			if(infoRequest!=null) {
-				response.getWriter().append("<p/>");
-				response.getWriter().append("Informatoion are: "+infoRequest);
 				try {
 					String filePath="D:\\Proiect\\History\\"+userName+".txt";
 					File newFile= new File(filePath);
@@ -67,10 +72,12 @@ public class Server extends HttpServlet {
 							 System.out.println(e.getMessage());
 							}
 					}
+					
+				    response.getWriter().write(jsonResp.JsonConvert(jsonResp));
 				}catch (Exception e) {
 					System.out.println(e.getMessage());
 				}
-			}
+			}	
 		}
 	}
 
