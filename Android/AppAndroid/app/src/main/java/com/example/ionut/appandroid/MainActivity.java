@@ -59,11 +59,9 @@ public class MainActivity extends Activity {
                 if (db == null) {
                     throw new Exception("No Download Document");
                 }
-                // Download the XML file
                 Document doc = db.parse(new InputSource(url.openStream()));
                 doc.getDocumentElement().normalize();
                 System.out.println("!!" + doc.getElementsByTagName("entry").getLength());
-                // Locate the Tag Name
                 if (doc != null) {
                     nodelist = doc.getElementsByTagName("entry");
                 } else {
@@ -86,9 +84,6 @@ public class MainActivity extends Activity {
                 Node nNode = nodelist.item(temp);
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) nNode;
-                    // Set the texts into TextViews from item nodes
-                    // Get the title
-//                    System.out.println("Title:::::::" + getNode("title", eElement).toString());
                     String values = getNode("title", eElement).toString();
                     value.add(values);
                     String elevation = getNode("elevation", eElement).toString();
@@ -96,9 +91,10 @@ public class MainActivity extends Activity {
                     String lng = getNode("lng", eElement).toString();
                     String wikipediaUrl = getNode("wikipediaUrl", eElement).toString();
                     MyObject object = new MyObject(values,elevation,lat,lng,wikipediaUrl);
-//                    System.out.println("title: " + object.title + "elevation" + object.elevation + "" + object.lat + "" + object.lng + "" + object.wikipediaUrl );
+                    MyData.getInstance().addObjectToList(object);
                     listaGeopoints.add(object);
                 }
+               // MyData.getInstance().setMyList(listaGeopoints);
             }
             Intent intent = new Intent(getBaseContext(), ListActivity.class);
             intent.putStringArrayListExtra("list", (ArrayList<String>) value);

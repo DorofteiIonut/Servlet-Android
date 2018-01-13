@@ -1,9 +1,5 @@
 package com.example.ionut.appandroid;
 
-/**
- * Created by Eusebiu Candrea on 1/13/2018.
- */
-
 public class MyObject {
 
     String title;

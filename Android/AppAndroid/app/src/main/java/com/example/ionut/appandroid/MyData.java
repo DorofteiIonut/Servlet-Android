@@ -5,13 +5,14 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Eusebiu on 5/22/2017.
- */
-
 public class MyData {
 
-    private static MyData mInstance = null;
+    private static MyData mInstance;
+    private static List<MyObject> myList = new ArrayList<>();
+
+    private MyData() {
+
+    }
 
     public static MyData getInstance() {
         if (mInstance == null) {
@@ -20,17 +21,19 @@ public class MyData {
         return mInstance;
     }
 
-    List<MyObject> myList = new ArrayList<>();
-
     public List<MyObject> getMyList() {
         return myList;
     }
 
-    public void setMyList(List<MyObject> myList) {
-        this.myList = myList;
+    public static void addObjectToList(MyObject obj){
+        myList.add(obj);
     }
 
-    private MyData() {
-
+    public static void printMyList(){
+        System.out.println("Lungime lista:"+ myList.size());
+        for(MyObject obj : myList){
+            System.out.println("Obj Title"+obj.getTitle());
+            System.out.println("Obj Lat"+obj.getLat());
+        }
     }
 }
