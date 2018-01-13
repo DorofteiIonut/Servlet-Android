@@ -13,13 +13,14 @@ import java.util.ArrayList;
 public class ListActivity extends AppCompatActivity {
     ListView listView;
     ArrayList<String> lista;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         listView = (ListView) findViewById(R.id.list);
         lista = getIntent().getStringArrayListExtra("list");
-
+        MyData.getInstance().printMyList();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, lista);
 
