@@ -49,7 +49,7 @@ public class Server extends HttpServlet {
 			} else {
 				if (obj.getLocationName() != null && obj.getLocationName()!="") {
 					try {
-						String filePath = "D:\\Proiect\\History\\" + obj.getUserName() + ".txt";
+						String filePath = "D:\\Workspace\\Servlet-Android\\History\\" + obj.getUserName() + ".txt";
 						File newFile = new File(filePath);
 						if (newFile.createNewFile()) {
 							System.out.println("Fisier Creat");

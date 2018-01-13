@@ -34,7 +34,6 @@ public class MainActivity extends Activity {
     String URL;
     NodeList nodelist;
     ListView listView;
-    List<MyObject> listaGeopoints=new ArrayList<>();
     List<String> value = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +91,7 @@ public class MainActivity extends Activity {
                     String wikipediaUrl = getNode("wikipediaUrl", eElement).toString();
                     MyObject object = new MyObject(values,elevation,lat,lng,wikipediaUrl);
                     MyData.getInstance().addObjectToList(object);
-                    listaGeopoints.add(object);
+
                 }
                // MyData.getInstance().setMyList(listaGeopoints);
             }
