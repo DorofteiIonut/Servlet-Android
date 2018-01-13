@@ -3,6 +3,7 @@ package com.example.ionut.appandroid;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -33,7 +34,8 @@ public class MainActivity extends Activity {
     String URL;
     NodeList nodelist;
     ListView listView;
-    List<String> value = new ArrayList<String>();;
+    List<MyObject> listaGeopoints=new ArrayList<>();
+    List<String> value = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,7 +91,13 @@ public class MainActivity extends Activity {
 //                    System.out.println("Title:::::::" + getNode("title", eElement).toString());
                     String values = getNode("title", eElement).toString();
                     value.add(values);
-
+                    String elevation = getNode("elevation", eElement).toString();
+                    String lat = getNode("lat", eElement).toString();
+                    String lng = getNode("lng", eElement).toString();
+                    String wikipediaUrl = getNode("wikipediaUrl", eElement).toString();
+                    MyObject object = new MyObject(values,elevation,lat,lng,wikipediaUrl);
+//                    System.out.println("title: " + object.title + "elevation" + object.elevation + "" + object.lat + "" + object.lng + "" + object.wikipediaUrl );
+                    listaGeopoints.add(object);
                 }
             }
             Intent intent = new Intent(getBaseContext(), ListActivity.class);
